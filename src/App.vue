@@ -1,10 +1,13 @@
 <script setup>
 import HelloWorld from './components/HelloWorld.vue'
 import TheWelcome from './components/TheWelcome.vue'
+import { Camera, Microphone } from 'vue-capture'
+import CameraComponent from './components/CameraComponent.vue';
+
 </script>
 
 <template>
-  <header>
+  <!-- <header>
     <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
 
     <div class="wrapper">
@@ -14,34 +17,113 @@ import TheWelcome from './components/TheWelcome.vue'
 
   <main>
     <TheWelcome />
-  </main>
+  </main> -->
+  <CameraComponent></CameraComponent>
 </template>
 
 <style scoped>
-header {
-  line-height: 1.5;
+body {
+	 display: flex;
+	 justify-content: center;
 }
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
+ .web-camera-container {
+	 margin-top: 2rem;
+	 margin-bottom: 2rem;
+	 padding: 2rem;
+	 display: flex;
+	 flex-direction: column;
+	 justify-content: center;
+	 align-items: center;
+	 border: 1px solid #ccc;
+	 border-radius: 4px;
+	 width: 500px;
 }
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
+ .web-camera-container .camera-button {
+	 margin-bottom: 2rem;
 }
+ .web-camera-container .camera-box .camera-shutter {
+	 opacity: 0;
+	 width: 450px;
+	 height: 337.5px;
+	 background-color: #fff;
+	 position: absolute;
+}
+ .web-camera-container .camera-box .camera-shutter.flash {
+	 opacity: 1;
+}
+ .web-camera-container .camera-shoot {
+	 margin: 1rem 0;
+}
+ .web-camera-container .camera-shoot button {
+	 height: 60px;
+	 width: 60px;
+	 display: flex;
+	 align-items: center;
+	 justify-content: center;
+	 border-radius: 100%;
+}
+ .web-camera-container .camera-shoot button img {
+	 height: 35px;
+	 object-fit: cover;
+}
+ .web-camera-container .camera-loading {
+	 overflow: hidden;
+	 height: 100%;
+	 position: absolute;
+	 width: 100%;
+	 min-height: 150px;
+	 margin: 3rem 0 0 -1.2rem;
+}
+ .web-camera-container .camera-loading ul {
+	 height: 100%;
+	 position: absolute;
+	 width: 100%;
+	 z-index: 999999;
+	 margin: 0;
+}
+ .web-camera-container .camera-loading .loader-circle {
+	 display: block;
+	 height: 14px;
+	 margin: 0 auto;
+	 top: 50%;
+	 left: 100%;
+	 transform: translateY(-50%);
+	 transform: translateX(-50%);
+	 position: absolute;
+	 width: 100%;
+	 padding: 0;
+}
+ .web-camera-container .camera-loading .loader-circle li {
+	 display: block;
+	 float: left;
+	 width: 10px;
+	 height: 10px;
+	 line-height: 10px;
+	 padding: 0;
+	 position: relative;
+	 margin: 0 0 0 4px;
+	 background: #999;
+	 animation: preload 1s infinite;
+	 top: -50%;
+	 border-radius: 100%;
+}
+ .web-camera-container .camera-loading .loader-circle li:nth-child(2) {
+	 animation-delay: 0.2s;
+}
+ .web-camera-container .camera-loading .loader-circle li:nth-child(3) {
+	 animation-delay: 0.4s;
+}
+ @keyframes preload {
+	 0% {
+		 opacity: 1;
+	}
+	 50% {
+		 opacity: 0.4;
+	}
+	 100% {
+		 opacity: 1;
+	}
+}
+ 
+
 </style>
